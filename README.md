@@ -1,5 +1,9 @@
 # simple-chess
+
+
 #include <stdio.h>
+
+
 int main()
 {
     int num, count, sum = 0;
