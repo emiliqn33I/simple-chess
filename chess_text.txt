@@ -1,0 +1,12 @@
+Statistika na igrata
+
+Hod na igracha: a1a4
+Hod na AI: e8e7
+Hod na igracha: h1h6
+Hod na AI: e7f7
+Hod na igracha: h6b6
+Hod na AI: f7e7
+Hod na igracha: a4a7
+Hod na AI: e7e8
+Hod na igracha: b6b8
+Hod na AI: e8f7
