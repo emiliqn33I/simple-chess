@@ -43,7 +43,7 @@ static int move_offsets[] = {
 
 };
 
-int piece_weights[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 500, 0 };
+int piece_weights[] = { 0, 500, 0 };
 int best_src, best_dst;
 
 
@@ -73,7 +73,7 @@ int SearchPosition(int side, int depth, int alpha, int beta)
             {
                 if(pce = board[sq])
                 {
-                    mat_score += piece_weights[pce & 15];
+                    mat_score += piece_weights[pce & 2];
                     (pce & 8) ? (pos_score += board[sq + 8]) : (pos_score -= board[sq + 8]);
                 }
             }
