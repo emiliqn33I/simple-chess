@@ -35,12 +35,11 @@ enum { WHITE = 8, BLACK = 16};
 
 static int move_offsets[] = {
 
-    15,  16,  17,   0,
-   -15, -16, -17,   0,
+    0,   0,   0,   0,
+    0,   0,   0,   0,
     1,  16,  -1, -16,   0,
     1,  16,  -1, -16,  15, -15, 17, -17,  0,
-    14, -14,  18, -18,  31, -31, 33, -33,  0,
-    3,  -1,  12,  21,  16,   7, 12
+    0,   0,  12,   0,   0,  7
 
 };
 
@@ -102,7 +101,7 @@ int SearchPosition(int side, int depth, int alpha, int beta)
             if(piece & side)
             {
                 type = piece & 7;
-                directions = move_offsets[type + 30];
+                directions = move_offsets[type + 21];
 
                 while(step_vector = move_offsets[++directions])
                 {
@@ -176,18 +175,18 @@ int SearchPosition(int side, int depth, int alpha, int beta)
 int main()
 {
 	FILE *fptr;
-	
+
 	fptr = fopen("chess_text.txt","w");
-	
+
 	if(fptr == NULL)
   	{
-      		printf("Error!");   
-      		exit(1);             
+      		printf("Error!");
+      		exit(1);
    	}
 	fprintf(fptr,"Statistika na igrata");
 	fprintf(fptr,"\n");
 	fprintf(fptr,"\n");
-	
+
 	printf("========================================================================================\n");
 	printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 	printf("$$$$$$$$$$$$$$$$$$$$$$______$$__$$$$__$$_______$$$_______ $$_______$$$$$$$$$$$$$$$$$$$$$\n");
@@ -198,13 +197,13 @@ int main()
 	printf("$$$$$$$$$$$$$$$$$$$$$|______||__|$$|__||_______||_______/$|_______/$$$$$$$$$$$$$$$$$$$$$\n");
 	printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 	printf("======================================================================================= \n");
-	
+
 	printf("Dobre ste doshli v igrata CHESS!\n");
 	printf("Za da igraete, trqbva da polzwate mestopolovenieto na figurata vi i da dobavite mestopolojenieto \n kude iskate da q mestite, naprimer figurata vi se namira na a1 \n i iskate da q postavite na a8, pishete prosto: a1a8");
 	printf("\n I se e premestila! \n");
 	printf("\n");
-	
-	    
+
+
 
     char user_move[5];
 
@@ -219,7 +218,7 @@ int main()
 
         if(!fgets(user_move, 5, stdin))
         {
-        
+
             continue;
         }
         if(user_move[0] == '\n')
@@ -228,7 +227,7 @@ int main()
         }
 
         fprintf(fptr,"Hod na igracha: %s\n",user_move);
-        
+
         int user_src, user_dst;
 
         for(int sq = 0; sq < 128; sq++)
@@ -247,10 +246,10 @@ int main()
             }
         }
 
-       
+
         board[user_dst] = board[user_src];
         board[user_src] = 0;
-	
+
         PrintBoard();
 
         side = 24 - side;
@@ -259,9 +258,9 @@ int main()
 
         board[best_dst] = board[best_src];
         board[best_src] = 0;
-	
+
 	fprintf(fptr,"Hod na AI: %s%s\n",notation[best_src], notation[best_dst]);
-	
+
         side = 24 - side;
 
         PrintBoard();
@@ -270,26 +269,25 @@ int main()
             printf("Checkmate!\n");
             break;
         }
-        
+
     }
-    
+
     char duma;
 
     printf("\n Wanna play again? (y/n): ");
 
-    scanf(" %c", &duma);
-    
-	 
+    scanf(" %s" , &duma);
+
+
     if(duma == 'y' || duma == 'Y')
     {
-	// tuk karame nanowo da pochva zadachata, toest ot main funciata
 	    main();
-	    
+
     } else{
-		
+
 	    return 0;
     }
-    
+
     fclose(fptr);
     return 0;
 }
