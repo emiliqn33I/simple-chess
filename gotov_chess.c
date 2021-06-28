@@ -71,7 +71,7 @@ int SearchPosition(int side, int depth, int alpha, int beta)
         {
             if(!(sq & 0x88))
             {
-                if(pce = board[sq])
+                if((pce = board[sq]))
                 {
                     mat_score += piece_weights[pce & 2];
                     (pce & 8) ? (pos_score += board[sq + 8]) : (pos_score -= board[sq + 8]);
@@ -103,7 +103,7 @@ int SearchPosition(int side, int depth, int alpha, int beta)
                 type = piece & 7;
                 directions = move_offsets[type + 21];
 
-                while(step_vector = move_offsets[++directions])
+                while((step_vector = move_offsets[++directions]))
                 {
                     dst_square = src_square;
 
